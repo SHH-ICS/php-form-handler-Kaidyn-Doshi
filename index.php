@@ -13,12 +13,11 @@
     <?php
       if(isset($_POST['submit'])){
         $username = $_POST['username']; $password = $_POST['password'];
-        if($username === 'admin' && $password === 'password'){
+        if($username === 'viridianknight7' && $password === 'viridian'){
           $_SESSION['login'] = true; header('LOCATION:handler.php'); die();
         } {
           echo "<div class='alert alert-danger'>INCORRECT CREDENTIALS!</div>";
         }
-  
       }
     ?>
     <form action="" method="post">
