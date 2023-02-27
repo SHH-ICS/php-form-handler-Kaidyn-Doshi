@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Page Title</title>
+    <title>PHP Website</title>
   </head>
 
   <body>
     
     <?php
-    echo "<h1>Hello, World!</h1>\n";
+    echo "<h1>Php text using echo</h1>\n";
     ?>
     
   </body>
