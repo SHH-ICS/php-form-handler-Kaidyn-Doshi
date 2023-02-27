@@ -1,21 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>PHP Website</title>
-  </head>
-
-  <body>
-    
+   <head>
+     <meta http-equiv='content-type' content='text/html;charset=utf-8' />
+     <title>Login</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   </head>
+<body>
+  <div class="container">
+    <h3 class="text-center">Login</h3>
     <?php
-    echo "<h1>Php text using echo</h1>\n";
-    ?>
-
-    <form action="handler.php" method="post">
-    Name: <input type="text" name="name"><br>
-    E-mail: <input type="text" name="email"><br>
-    <input type="submit">
-    </form>
-
-  </body>
+      if(isset($_POST['submit'])){
+        $username = $_POST['username']; $password = $_POST['password'];
+        if($username === 'admin' && $password === 'password'){
+          $_SESSION['login'] = true; header('LOCATION:handler.php'); die();
+        } {
+          echo "<div class='alert alert-danger'>INCORRECT CREDENTIALS!</div>";
+        }
   
-</html>
+      }
+    ?>
+    <form action="" method="post">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" name="password" required>
+      </div>
+      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+      <i class="material-icons">Login</i>
+      </button>
+    </form>
+  </div>

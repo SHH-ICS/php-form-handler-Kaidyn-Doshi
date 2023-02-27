@@ -1,23 +1,15 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['login'])) {
+        header('LOCATION:login.php'); die();
+    }
+?>
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css">
-    <title>Page Title</title>
+        <title>Correct Login page</title>
   </head>
-
-  <body>
-    
-    <?php
-    $userName = "";
-    if ( isset( $_POST['userName'] ) ){
-      $userName = $_POST['userName'];
-    }
-    echo "<h1>Welcome ".$userName."!</h1>\n";
-    ?>
-
-    Welcome <?php echo $_POST["name"]; ?><br>
-    Your email address is: <?php echo $_POST["email"]; ?>
-    
-  </body>
-  
+    <body>
+        this page is only available to viridianknight7!!!
+    </body> 
 </html>
