@@ -1,36 +1,61 @@
-<!DOCTYPE html>
+
+<!DOCTYPE HTML>  
 <html>
-   <head>
-     <meta http-equiv='content-type' content='text/html;charset=utf-8' />
-     <title>Login</title>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   </head>
-<body>
-  <div class="container">
-    <h3 class="text-center">Login</h3>
-    <?php
-      if(isset($_POST['submit'])){
-        $username = $_POST['username']; $password = $_POST['password'];
-        if($username === 'viridianknight7' && $password === 'viridian'){
-          $_SESSION['login'] = true; header('LOCATION:handler.php'); die();
-        } {
-          echo "<div class='alert alert-danger'>INCORRECT CREDENTIALS!</div>";
-        }
-      }
-    ?>
-    <form action="" method="post">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" name="password" required>
-      </div>
-      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-      <i class="material-icons">Login</i>
-      </button>
-    </form>
-  </div>
+<head>
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+<body>  
+<?php
+session_start();
+$nameErr = $emailErr = "";
+$name = $email = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>''>  
+  Name: <input type="text" name="name">
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+
+< ?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo '<br>';
+echo $email;
+echo '<br>';
+?>
+</body>
+</html>
