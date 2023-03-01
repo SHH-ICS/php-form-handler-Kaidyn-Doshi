@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nameErr = "Name is required";
   } else {
     $name = test_input($_POST["name"]);
-    // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
       $nameErr = "Only letters and white space allowed";
     }
@@ -41,7 +40,7 @@ function test_input($data) {
 }
 ?>
 
-<h2>PHP Form Validation Example</h2>
+<h2>Form</h2>
 <p><span class="error">* required field</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">  
   Name: <input type="text" name="name">
@@ -50,16 +49,8 @@ function test_input($data) {
   E-mail: <input type="text" name="email">
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
-  <input type="submit" name="submit" value="Submit">  
+  <input type='button' value='Your Input' onclick='displayFormContents(this.form);return false;' />  
 </form>
-
-<?php
-echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-?>
 
 </body>
 </html>
