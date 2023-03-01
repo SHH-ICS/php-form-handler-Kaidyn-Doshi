@@ -1,56 +1,29 @@
-<!DOCTYPE HTML>  
+
+<!DOCTYPE html>
 <html>
 <head>
-<style>
-.error {color: #FF0000;}
-</style>
+    <title>Form</title>
+    <script type="text/JavaScript">
+        function showUser(){
+            var user = document.getElementById("user").value;
+            display_User.innerHTML= user;
+        }
+        function showMessage(){
+            var message = document.getElementById("message").value;
+            display_message.innerHTML= message;
+        }
+    </script>
+
 </head>
-<body>  
-
-<?php
-$nameErr = $emailErr = "";
-$name = $email = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
-  } else {
-    $name = test_input($_POST["name"]);
-    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
-    }
-  }
-  
-  if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-  } else {
-    $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format";
-    }
-  }
-}
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-?>
-
-<h2>Form</h2>
-<p><span class="error">* required field</span></p>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">  
-  Name: <input type="text" name="name">
-  <span class="error">* <?php echo $nameErr;?></span>
-  <br><br>
-  E-mail: <input type="text" name="email">
-  <span class="error">* <?php echo $emailErr;?></span>
-  <br><br>
-  <input type='button' value='Your Input' onclick='displayFormContents(this.form);return false;' />  
-</form>
-
+<body>
+<h1>Form in HTML <h1>
+<h4>
+Name: <input type="text" id = "user">
+<br><br>
+Email: <input type="text" id = "message">
+<p> Username: <span id = "display_User"></p>
+<p> Message is: <span id = "display_message"></span> </p>
+<input type="submit" onclick="showUser(); showMessage()" value="Submit" />
+<h4>
 </body>
 </html>

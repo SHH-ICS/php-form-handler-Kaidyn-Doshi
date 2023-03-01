@@ -1,0 +1,24 @@
+#title {
+    color:white;
+    text-decoration:underline;
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:40px;
+}
+
+.subtitle {
+    color:white;
+    font-family:Verdana;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.submission {
+    color:rgb(213, 232, 210);
+    font-family:Verdana;
+    font-size:20px;
+}
+
+.background {
+    background-color:rgb(10, 215, 205);
+}
